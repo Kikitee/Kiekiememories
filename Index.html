@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memories</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+  }
+
+  h1 {
+    margin-top: 20px;
+  }
+
+  .carousel {
+    position: relative;
+    max-width: 400px;
+    margin: 30px auto;
+    overflow: hidden;
+    border-radius: 12px;
+  }
+
+  .slides img {
+    width: 100%;
+    display: none;
+    border-radius: 12px;
+  }
+
+  .slides img.active {
+    display: block;
+  }
+
+  button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.6);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  .prev { left: 10px; }
+  .next { right: 10px; }
+
+  .btn {
+    margin-top: 20px;
+    padding: 12px 20px;
+    border: none;
+    background: black;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  #message {
+    margin-top: 20px;
+    font-size: 18px;
+    opacity: 0;
+    transition: 1s;
+  }
+
+  #message.show {
+    opacity: 1;
+  }
+</style>
+</head>
+
+<body>
+
+<h1>Thank you for the memories ❤️</h1>
+
+<div class="carousel">
+  <div class="slides">
+    <!-- YOUR PICTURES GO HERE -->
+    <img src="image1.jpg" class="active">
+    <img src="image2.jpg">
+    <img src="image3.jpg">
+  </div>
+
+  <button class="prev" onclick="change(-1)">❮</button>
+  <button class="next" onclick="change(1)">❯</button>
+</div>
+
+<button class="btn" onclick="showMessage()">Final Message</button>
+
+<p id="message">
+  Thank you for everything we shared.  
+  I’ll always appreciate the memories.  
+  I wish you the best.
+</p>
+
+<script>
+let index = 0;
+const slides = document.querySelectorAll(".slides img");
+
+function showSlide(i) {
+  slides.forEach(img => img.classList.remove("active"));
+  slides[i].classList.add("active");
+}
+
+function change(n) {
+  index += n;
+  if (index >= slides.length) index = 0;
+  if (index < 0) index = slides.length - 1;
+  showSlide(index);
+}
+
+setInterval(() => change(1), 3000);
+
+function showMessage() {
+  document.getElementById("message").classList.add("show");
+}
+</script>
+
+</body>
+</html>
